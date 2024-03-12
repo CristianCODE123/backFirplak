@@ -20,6 +20,7 @@ class Pedido extends Model
         'FechaEntrega',
         'EstadoPedido',
         'clienteId',
+        'EstadoTransporteID'
     ];
 
     public $timestamps = false;
@@ -28,5 +29,10 @@ class Pedido extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'clienteId');
+    }
+    
+    public function EstadoTransporte()
+    {
+        return $this->belongsTo(Cliente::class, 'EstadoTransporteID');
     }
 }
