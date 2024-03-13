@@ -27,6 +27,9 @@ Route::get('/clientes', [ClienteController::class, 'index']);
 Route::post('/pods', [PODController::class, 'store']);
 Route::get('/pods', [PODController::class, 'index']);
 
+Route::post('/getPedidosLinea/{pedidoId}', [PedidoController::class, 'indexLinea']);
+
+Route::get('/getPedidos', [PedidoController::class, 'index']);
 Route::post('/pedidos', [PedidoController::class, 'store']);
 Route::get('/productos', [ProductoController::class, 'index']);
 Route::post('/crearPedido/{pedidoId}', [PedidoController::class, 'crearLineaPedido']);

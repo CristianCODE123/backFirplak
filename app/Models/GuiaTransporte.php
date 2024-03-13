@@ -17,7 +17,8 @@ class GuiaTransporte extends Model
         'TransportadoraID',
         'FechaDespacho',
         'Destino',
-        'ClienteID'
+        'ClienteID',
+        'EstadoEntrega'
     ];
 
     public function entregas()

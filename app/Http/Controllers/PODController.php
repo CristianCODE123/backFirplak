@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\LineaPedido;
 use Illuminate\Http\Request;
 use App\Models\POD; // Asegúrate de importar el modelo POD
 
@@ -33,7 +33,29 @@ class PODController extends Controller
 
         $pod->save();
 
+        $this->actualizarEstadoEntrega($request, $request->NumPedidoLinea);
+
+
+
         return response()->json(['message' => 'POD creado correctamente'], 201);
     }
+
+    public function actualizarEstadoEntrega(Request $request, $id)
+{
+   
+    // Buscar la línea de pedido por su ID
+    $lineaPedido = LineaPedido::find($id);
+
+    // Verificar si la línea de pedido existe
+    if ($lineaPedido) {
+        // Actualizar el estado de entrega
+        $lineaPedido->EstadoTransporteID = 3;
+        $lineaPedido->save();
+
+        return redirect()->back()->with('success', 'Estado de entrega actualizado exitosamente.');
+    } else {
+        return redirect()->back()->with('error', 'La línea de pedido no existe.');
+    }
+}
     
 }

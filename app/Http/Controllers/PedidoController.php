@@ -30,7 +30,7 @@ class PedidoController extends Controller
         return response()->json(['message' => 'Pedido creado exitosamente', 'pedido_id' => $pedidoId], 201);
     }
 
-
+  
 
     public function crearLineaPedido(Request $request, $pedidoId)
     {
@@ -75,6 +75,8 @@ class PedidoController extends Controller
 
 public function obtenerDocumentosEntregaPorPedido($pedidoId)
 {
+
+    
     // Llamar al procedimiento almacenado
     $resultados = DB::select('CALL ObtenerDocumentosEntregaPorPedido(?)', [$pedidoId]);
 
@@ -110,4 +112,20 @@ public function subirFotoDocumento(Request $request, $documentoId)
 
     return response()->json(['error' => 'No se ha proporcionado ningún archivo'], 400);
 }
+
+public function index()
+{
+    $pedido = Pedido::all();
+    return response()->json($pedido);
+}
+
+
+public function indexLinea($pedidoId){
+    // Filtrar las líneas de pedido por PedidoID específico
+    $lineasPedido = LineaPedido::where('PedidoID', $pedidoId)->get();
+    
+    return response()->json($lineasPedido);
+}
+
+
 }

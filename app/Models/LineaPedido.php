@@ -20,6 +20,7 @@ class LineaPedido extends Model
         'FechaEntrega',
         'TipoLinea',
         'EstadoLinea',
+        'EstadoTransporteID'
     ];
 
     public function pedido()
@@ -31,4 +32,5 @@ class LineaPedido extends Model
     {
         return $this->belongsTo(Producto::class, 'ProductoID');
     }
+    
 }
